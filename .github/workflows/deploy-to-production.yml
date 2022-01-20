@@ -1,14 +1,12 @@
 name: Stage Deployment 
-
 on:
   push:
     branches:
       - main
-
 jobs:
   deployment:
     runs-on: ubuntu-latest
     environment: Production
     steps:
-      - name: deploy
+      - name: Deploy to Production
        	run: echo "Deploy to Production"
