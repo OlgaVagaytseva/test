@@ -1,0 +1,37 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'Ubuntu-latest'
+    steps:
+    - script: echo Do Build!
+      displayName: 'Do Build'
+
+- stage: deploy
+  jobs:
+  - deployment: DeploySolution
+    displayName: deploy solution
+    pool:
+      vmImage: 'Ubuntu-latest'
+    # creates an environment if it doesn't exist
+    environment: 'Development'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo 'Solution deplyed to \'Development\' environment'
+
+
+
+
